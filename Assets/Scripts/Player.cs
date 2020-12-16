@@ -5,9 +5,9 @@ using UnityEngine;
 public class Player : Character
 {
 
-    void Start()
+    protected override void Start()
     {
-        
+        base.Start();
     }
     
     protected override void Update()

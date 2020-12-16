@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Character : MonoBehaviour
+public abstract class Character : MonoBehaviour
 {
     protected Vector2 direction;
     [SerializeField]
@@ -10,7 +10,7 @@ public class Character : MonoBehaviour
 
     private Animator animator;
 
-    void Start()
+    protected virtual void Start()
     {
         animator = GetComponent<Animator>();
     }
@@ -24,9 +24,8 @@ public class Character : MonoBehaviour
         transform.Translate(direction * speed * Time.deltaTime);
         if (this.direction.x != 0 || this.direction.y != 0)
         {
-            animator.SetLayerWeight(1, 1);
             AnimateMove();
-            Debug.Log(this.direction.x);
+            animator.SetLayerWeight(1, 1);
         }
         else
         {
@@ -35,7 +34,7 @@ public class Character : MonoBehaviour
     }
     public void AnimateMove()
     {
-        animator.SetFloat("x", this.direction.x);
-        animator.SetFloat("y", this.direction.y);
+        animator.SetFloat("x", direction.x);
+        animator.SetFloat("y", direction.y);
     }
 }
